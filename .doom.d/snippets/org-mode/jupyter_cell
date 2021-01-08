@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# contributor: cyb
+# name: cyb_jupyter_cell
+# uuid: jupyter-cell
+# key: juc
+# --
+
+#+begin_src jupyter-python :session py :async yes :kernel python3
+$0
+#+end_src
