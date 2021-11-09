@@ -9,8 +9,35 @@
 ;; To install SOME-PACKAGE from MELPA, ELPA or emacsmirror:
 ;(package! some-package)
 (package! zmq)
+(package! org-ref)
+(package! kivy-mode)
+(package! org-alert)
+;; (package! ob-mermaid)
+;; (package! mermaid-mode)
 ;; (package! ob-jupyter)
-(package! jupyter)
+;; (package! jupyter)
+;; (package! python-black)
+;; (package! sqlformat)
+;; (package! org-gantt
+;;   :recipe (:host github :repo "swillner/org-gantt"))
+
+;;   strange date gantt chart exporting
+;; (package! org-ql)
+;; (package! ts)
+;; (package! s)
+;; (package! dash)
+
+;; (package! elgantt
+;;   :recipe (:host github :repo "legalnonsense/elgantt"))
+
+;; (package! kivy-mode
+;;   :recipe (:host github :repo "kivy/kivy"
+;;            :files ("kivy-mode.el" "tools/highlight/*.el"))
+;;   )
+
+;; (package! psvn
+;;   :recipe (:host github :repo "windley/emacs"
+;;            :files ("psvn.el" "emacs/*.el")))
 
 ;; To install a package directly from a remote git repo, you must specify a
 ;; `:recipe'. You'll find documentation on what `:recipe' accepts here:
