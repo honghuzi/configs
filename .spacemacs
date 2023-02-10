@@ -610,6 +610,7 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 (setq configuration-layer-elpa-archives
     '(
 	  ;;("melpa-exact" . "https://melpa.org/packages/")
+          ("gnu-devel" . "https://elpa.gnu.org/devel")
       ("melpa-cn" . "https://mirrors.cloud.tencent.com/elpa/melpa/")
       ("gnu-cn"   . "https://mirrors.cloud.tencent.com/elpa/gnu/")
       ("nongnu-cn"   . "https://mirrors.cloud.tencent.com/elpa/nongnu/")
