@@ -32,7 +32,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(yaml
+   '(html
+     yaml
      rust
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -40,7 +41,8 @@ This function should only modify configuration layer settings."
      ;; `M-m f e R' (Emacs style) to install them.
      ;; ----------------------------------------------------------------
      (auto-completion :variables
-                      auto-completion-enable-snippets-in-popup t)
+                      ;; auto-completion-enable-snippets-in-popup nil
+                      )
      better-defaults
      (unicode-fonts :variables
                     unicode-fonts-enable-ligatures t
@@ -52,18 +54,22 @@ This function should only modify configuration layer settings."
      ivy
      templates
      lsp
-     markdown
+     ;; markdown
      multiple-cursors
+     (markdown :variables
+               ;; markdown-live-preview-engine 'vmd
+               )
      (org :variables
-          org-enable-roam-support t
-          org-enable-org-journal-support t
-          org-enable-roam-support t
-          org-enable-sticky-header t
-          ;; org-enable-valign t
-          org-enable-appear-support t
-          org-journal-dir "D:/docs/org/journal"
-
+          org-directory "D:/docs/org"
           org-projectile-file "TODOs.org"
+          ;; org-enable-org-journal-support t
+          ;; org-journal-dir "D:/docs/org/journal"
+          org-enable-roam-support t
+          org-enable-valign t
+          org-enable-sticky-header t
+          org-enable-appear-support t
+          ;; org-enable-notifications t
+          ;; org-start-notification-daemon-on-startup t
           )
      (python :variables python-backend 'lsp
              python-lsp-server 'pyright
@@ -71,8 +77,6 @@ This function should only modify configuration layer settings."
              python-formatter 'black
              python-format-on-save t
              )
-     ;; ipython-notebook
-     ;; (ipython-notebook :variables ein-backend 'jupyter)
 
      (julia :variables julia-backend 'lsp
             ;; julia-mode-enable-ess t
@@ -94,9 +98,8 @@ This function should only modify configuration layer settings."
      ;;                  (not git-gutter))
      ibuffer
      treemacs
-     (deft :variables deft-zetteldeft t)
+     ;; (deft :variables deft-zetteldeft t)
      themes-megapack
-     mermaid
      )
 
 
@@ -109,17 +112,24 @@ This function should only modify configuration layer settings."
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(
+                                      gnu-elpa-keyring-update
                                       ;; dsvn
-                                      ;; jupyter
-                                      ;; (dsvn :location (recipe :fetcher github :repo "rosbo018/dsvn"))
-                                      (jupyter :location (recipe :fetcher github :repo "benneti/spacemacs-jupyter"))
+                                      jupyter
+                                      ;; (jupyter :location (recipe :fetcher github :repo "benneti/spacemacs-jupyter"))
+                                      qml-mode
+                                      qt-pro-mode
+                                      grip-mode
+                                      keyfreq
                                               )
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(julia-repl)
+   dotspacemacs-excluded-packages '(
+                                    ;; julia-repl
+                                    fancy-battery
+                                    )
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -195,7 +205,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil then verify the signature for downloaded Spacelpa archives.
    ;; (default t)
-   dotspacemacs-verify-spacelpa-archives nil
+   dotspacemacs-verify-spacelpa-archives t
 
    ;; If non-nil then spacemacs will check for updates at startup
    ;; when the current branch is not `develop'. Note that checking for
@@ -605,13 +615,9 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
-	(setq package-gnupghome-dir "/c/Users/ccc/.emacs.d/elpa/gnupg/")
+(setq package-gnupghome-dir "/c/Users/ccc/.emacs.d/elpa/gnupg/")
 
-(setq url-proxy-services
-   '(("no_proxy" . "^\\(localhost\\|10.*\\)")
-   )
-
-;;(setq configuration-layer-elpa-archives
+;; (setq configuration-layer-elpa-archives
 ;;   '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
 ;;     ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
 ;;     ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
@@ -621,10 +627,10 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 (setq configuration-layer-elpa-archives
     '(
 	  ("melpa-exact" . "https://melpa.org/packages/")
-    ("gnu-devel" . "https://elpa.gnu.org/devel")
+    ("gnu-devel" . "https://elpa.gnu.org/devel/")
       ;; ("melpa-cn" . "https://mirrors.cloud.tencent.com/elpa/melpa/")
-      ("gnu-cn"   . "https://mirrors.cloud.tencent.com/elpa/gnu/")
-      ("nongnu-cn"   . "https://mirrors.cloud.tencent.com/elpa/nongnu/")
+      ;; ("gnu-cn"   . "https://mirrors.cloud.tencent.com/elpa/gnu/")
+      ;; ("nongnu-cn"   . "https://mirrors.cloud.tencent.com/elpa/nongnu/")
       ("nongnu-devel" . "https://elpa.nongnu.org/nongnu-devel/")
       )
       )
@@ -651,24 +657,50 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+  ;; keyfreq
+  (require 'keyfreq)
+  (keyfreq-mode 1)
+  (keyfreq-autosave-mode 1)
+  (setq-default keyfreq-file "~/.config/emacs/assets/keyfreq-log")
+  (setq keyfreq-folder "~/.config/emacs/extensions/keyfreq")
+  (setq keyfreq-excluded-commands
+        '(self-insert-command
+          evil-forward-char
+          evil-backward-char
+          evil-forward-word-begin
+          evil-forward-word-end
+          evil-previous-line
+          evil-next-line
+          evil-insert
+
+          forward-char
+          backward-char
+          forward-word-begin
+          forward-word-end
+          previous-line
+          next-line
+
+          ))
+
   (setq lsp-keymap-prefix "C-c C-l")
   ;; 没啥用, 还没 vc 好用
   ;; (autoload 'svn-status "dsvn" "Run `svn status'." t)
   ;; (autoload 'svn-update "dsvn" "Run `svn update'." t)
   ;; (require 'vc-svn)
 
-  ;; (setq jupyter-repl-echo-eval-p t)
+
+
+  ;; org settings
+  (setq jupyter-repl-echo-eval-p t)
   (with-eval-after-load 'org
-    ;; (setq org-superstar-headline-bullets-list '(?■ ?◆ ?▲ ?▶))
+    (setq org-confirm-babel-evaluate nil)
+    (setq org-superstar-headline-bullets-list '(?■ ?◆ ?▲ ?▶))
     (org-babel-do-load-languages
      'org-babel-load-languages
      '(
        (emacs-lisp . t)
        (python . t)
        (julia . t)
-       ;; (dot . t)
-       (mermaid . t)
-       ;; (scheme . t)
        (jupyter . t)
        )
      )
@@ -678,19 +710,20 @@ before packages are loaded."
                                                         (:session . "jl")
                                                         (:kernel . "julia-1.8")))
 
-    (setq org-babel-default-header-args:jupyter-python'((:async . "yes")
+    (setq org-babel-default-header-args:jupyter-python '((:async . "yes")
                                                         (:session . "py")
                                                         (:kernel . "python3")))
 
     (setq ob-async-no-async-languages-alist '("python" "jupyter-python" "julia" "jupyter-julia"))
+
+    (with-eval-after-load 'org-agenda
+      (require 'org-projectile)
+      (mapcar '(lambda (file)
+                 (when (file-exists-p file)
+                   (push file org-agenda-files)))
+              (org-projectile-todo-files)))
     )
 
-  (with-eval-after-load 'org-agenda
-    (require 'org-projectile)
-    (mapcar '(lambda (file)
-               (when (file-exists-p file)
-                 (push file org-agenda-files)))
-            (org-projectile-todo-files)))
 
 )
 
@@ -707,20 +740,15 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(global-git-gutter-mode nil)
- '(lsp-julia-default-environment "~/.julia/environments/v1.8")
- '(org-confirm-babel-evaluate nil)
- '(org-format-latex-options
-   '(:foreground default :background default :scale 1.5 :html-foreground "Black" :html-background "Transparent" :html-scale 1.5 :matchers
-                 ("begin" "$1" "$" "$$" "\\(" "\\[")))
- '(org-roam-directory "D:/docs/org/org-roam/")
- '(package-selected-packages
-   '(yaml-mode cargo flycheck-rust helm-core racer ron-mode rust-mode toml-mode annalist org-contrib org-pomodoro alert log4e gntp yasnippet-snippets ws-butler writeroom-mode winum which-key volatile-highlights vim-powerline vi-tilde-fringe uuidgen use-package unfill undo-tree treemacs-projectile treemacs-persp treemacs-icons-dired treemacs-evil toc-org term-cursor symon symbol-overlay string-inflection string-edit-at-point spacemacs-whitespace-cleanup spacemacs-purpose-popwin spaceline-all-the-icons space-doc restart-emacs request rainbow-delimiters quickrun popwin pcre2el password-generator paradox overseer org-superstar org-rich-yank org-projectile org-present org-mime org-download org-cliplink open-junk-file nameless mwim multi-line mmm-mode markdown-toc macrostep lsp-ui lsp-treemacs lsp-origami lorem-ipsum link-hint inspector info+ indent-guide hybrid-mode hungry-delete htmlize holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-lsp helm-descbinds helm-company helm-c-yasnippet helm-ag google-translate golden-ratio gnuplot git-gutter-fringe gh-md fuzzy font-lock+ flycheck-pos-tip flycheck-package flycheck-elsa flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-easymotion evil-cleverparens evil-args evil-anzu eval-sexp-fu emr elisp-slime-nav elisp-def editorconfig dumb-jump drag-stuff dotenv-mode dired-quick-sort diminish devdocs define-word column-enforce-mode clean-aindent-mode centered-cursor-mode browse-at-remote auto-yasnippet auto-highlight-symbol auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell))
- '(warning-suppress-types '((use-package) (use-package))))
+ '(lsp-julia-package-dir nil)
+ '(lsp-julia-flags `("-JD:\\Program Files\\julials\\languageserver.so"))
+ '(lsp-julia-default-depot "c:/Users/ccc/.julia/")
+ '(lsp-julia-default-environment "c:/Users/ccc/.julia/environments/v1.8/")
+ )
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:background nil)))))
 )
