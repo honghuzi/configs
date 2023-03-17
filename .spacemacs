@@ -693,7 +693,14 @@ before packages are loaded."
   ;; org settings
   (setq jupyter-repl-echo-eval-p t)
   (with-eval-after-load 'org
-    (setq org-confirm-babel-evaluate nil)
+	(setq org-src-fontify-natively t
+          org-src-window-setup 'current-window ;; edit in current window
+          org-src-strip-leading-and-trailing-blank-lines t
+          org-src-preserve-indentation t ;; do not put two spaces on the left
+          org-src-tab-acts-natively t
+          org-edit-src-content-indentation 0
+	  org-confirm-babel-evaluate nil
+          )
     (setq org-superstar-headline-bullets-list '(?■ ?◆ ?▲ ?▶))
     (org-babel-do-load-languages
      'org-babel-load-languages
