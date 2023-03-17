@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: jupyter-python-data
+# key: pd
+# --
+
+#+begin_src jupyter-python :display plain
+$0
+#+end_src

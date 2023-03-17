@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: jupyter-julia-cell
+# key: jc
+# --
+
+#+begin_src jupyter-julia
+$0
+#+end_src
