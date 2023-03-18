@@ -614,8 +614,8 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-
-(setq package-gnupghome-dir "/c/Users/ccc/.emacs.d/elpa/gnupg/")
+;; https://emacs.stackexchange.com/questions/46302/gpg-fails-to-find-key-to-elpa-archive
+;;(setq package-gnupghome-dir "/c/Users/ccc/.emacs.d/elpa/gnupg/")
 
 ;; (setq configuration-layer-elpa-archives
 ;;   '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
