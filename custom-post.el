@@ -18,9 +18,20 @@
 ;; (require 'eaf-pdf-viewer)
 
 ;; remote editing
-(setq tramp-default-method "plink")
 
+(defvar tramp-default-method "plink")
 
+(use-package ssh-deploy
+  :ensure t
+  :demand
+  :after hydra
+  :hook ((after-save . ssh-deploy-after-save)
+         (find-file . ssh-deploy-find-file))
+  :config
+  ;; (ssh-deploy-line-mode) ;; If you want mode-line feature
+  ;; (ssh-deploy-add-menu) ;; If you want menu-bar feature
+  (ssh-deploy-hydra "C-c M-z") ;; If you want the hydra feature
+  )
 
 ;; (defun my-org-screenshot ()
 ;;   "Take a screenshot into a time stamped unique-named file in the
@@ -52,8 +63,19 @@
 
 ;; ;; prog-mode
 
-(setq mermaid-flags "-s 1.5")
+(defvar mermaid-flags "-s 1.5")
 ;;python
+(defvar lsp-ruff-lsp-ruff-path ["D:/Program Files/python311/Scripts/ruff.exe"])
+;; (setq lsp-pyls-plugins-flake8-config "~/.flake8")
+;; (setq lsp-pylsp-plugins-flake8-config "~/.flake8")
+;; (setq flycheck-python-flake8-executable "flake8")
+(defvar lsp-ruff-lsp-ruff-args ["--config=~/pyproject.toml"])
+
+(use-package python-black
+  :demand t
+  :after python
+  :hook (python-mode . python-black-on-save-mode))
+
 
 (setq python-prettify-symbols-alist
       '(("lambda" . "λ")
@@ -79,16 +101,17 @@
         ;; ("bool" . "𝔹")
         ))
 
+
 (setq python-shell-interpreter "D:\\Program Files\\python311\\python.exe")
-(setq lsp-pyright-python-executable-cmd "D:\\Program Files\\python311\\python.exe")
-(setq lsp-pyright-extra-paths "D:\\Program Files\\python311\\Lib\\site-packages\\")
-(setq flycheck-python-pycompile-executable "D:\\Program Files\\python311\\python.exe")
+(defvar lsp-pyright-python-executable-cmd "D:\\Program Files\\python311\\python.exe")
+(defvar lsp-pyright-extra-paths "D:\\Program Files\\python311\\Lib\\site-packages\\")
+(defvar flycheck-python-pycompile-executable "D:\\Program Files\\python311\\python.exe")
 
 ;; julia
-(setq lsp-julia-package-dir nil)
-(setq lsp-julia-flags `("-JD:/Program Files/julials/languageserver.so"))
-(setq lsp-julia-default-depot "~/.julia/")
-(setq lsp-julia-default-environment "~/.julia/environments/v1.9/")
+(defvar lsp-julia-package-dir nil)
+(defvar lsp-julia-flags `("-JD:/Program Files/julials/languageserver.so"))
+(defvar lsp-julia-default-depot "~/.julia/")
+(defvar lsp-julia-default-environment "~/.julia/environments/v1.9/")
 
 ;;sql
 (use-package sqlformat
@@ -106,17 +129,17 @@
 (use-package simple-httpd)
 
 (setenv "PYDEVD_DISABLE_FILE_VALIDATION" "1")
-(setq org-roam-db-location "d:/docs/org/org-roam.db")
-(setq org-roam-directory "d:/docs/org/org-roam/")
-(setq org-directory "d:/docs/org")
-(setq org-projectile-file "TODOs.org")
-(setq centaur-org-directory org-directory)
+(defvar org-roam-db-location "d:/docs/org/org-roam.db")
+(defvar org-roam-directory "d:/docs/org/org-roam/")
+(defvar org-directory "d:/docs/org")
+(defvar org-projectile-file "TODOs.org")
+(defvar centaur-org-directory org-directory)
 
 
-(setq org-download-screenshot-method "convert clipboard: %s")
+(defvar org-download-screenshot-method "convert clipboard: %s")
 (setq-default org-download-image-dir "./images")
 (setq-default org-download-heading-lvl nil)
-(setq org-download-method 'directory)
+(defvar org-download-method 'directory)
 
 (use-package org
   :config
@@ -143,13 +166,12 @@
 
   (setq org-src-fontify-natively t
         org-src-window-setup 'current-window ;; edit in current window
-        org-src-strip-leading-and-trailing-blank-lines t
         org-src-preserve-indentation t ;; do not put two spaces on the left
         org-src-tab-acts-natively t
         org-edit-src-content-indentation 0
 	    org-confirm-babel-evaluate nil)
-  (setq org-confirm-babel-evaluate nil)
-  (setq org-superstar-headline-bullets-list '(?■ ?◆ ?▲ ?▶))
+  (defvar org-superstar-headline-bullets-list '(?■ ?◆ ?▲ ?▶))
+  (defvar org-src-strip-leading-and-trailing-blank-lines t)
 
   )
 
@@ -157,13 +179,13 @@
 (use-package jupyter
   :defer t
   :init
-  (setq org-babel-default-header-args:jupyter-python '((:async . "yes")
-                                                       (:session . "py")
-                                                       (:kernel . "python3")))
-  (setq org-babel-default-header-args:jupyter-julia '((:async . "yes")
-                                                      (:session . "jl")
-                                                      (:kernel . "julia-1.8")))
-  (setq ob-async-no-async-languages-alist '("python" "jupyter-python" "julia" "jupyter-julia"))
+  (defvar org-babel-default-header-args:jupyter-python '((:async . "yes")
+                                                         (:session . "py")
+                                                         (:kernel . "python3")))
+  (defvar org-babel-default-header-args:jupyter-julia '((:async . "yes")
+                                                        (:session . "jl")
+                                                        (:kernel . "julia-1.8")))
+  (defvar ob-async-no-async-languages-alist '("python" "jupyter-python" "julia" "jupyter-julia"))
 
   :after (:all org)
   )
