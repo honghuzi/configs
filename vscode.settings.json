@@ -1,86 +1,112 @@
 {
-  "editor.lineNumbers": "off",
-  "workbench.iconTheme": "eq-material-theme-icons",
-  "workbench.colorTheme": "Monokai",
-  // 控制字体系列。
-  "editor.fontFamily": "Fira Code, 微软雅黑, 'Courier New', monospace",
-  // 以像素为单位控制字号。
-  "editor.fontSize": 16,
-  "markdown.preview.fontFamily": "Fira Code, 微软雅黑, 'Courier New', monospace",
-  "julia.enableTelemetry": true,
-  "workbench.activityBar.visible": true,
-  "workbench.statusBar.visible": true,
-  "window.menuBarVisibility": "default",
-  "workbench.sideBar.location": "left",
-  "cSpell.userWords": [
-    "Autler",
-    "Photoemission",
-    "Photoionization"
-  ],
-  "julia.enableCrashReporter": true,
-
-  // Points to the julia executable.
-  "julia.executablePath": "D:\\Program Files\\Julia-0.6.4\\bin\\julia.exe",
-
-  "files.associations": {
-    "*.vsz": "python",
-    "*.inp": "python",
-    "*.el": "lisp"
-  },
-  "materialTheme.fixIconsRunning": false,
-  "latex-workshop.view.pdf.viewer": "tab",
-  "matlab-runner.matlabPath": "D:\\Program Files\\matlab\\bin\\matlab.exe",
-  "matlab.mlintpath": "D:\\Program Files\\matlab\\bin\\win64\\mlint.exe",
-  // Markdown 设置
-  "markdown.extension.toc.levels": "1..3",
-  // pandoc .pdf output option template that you would like to use
-  "pandoc.pdfOptString": "--pdf-engine=xelatex -V CJKmainfont=\"Microsoft YaHei UI\"",
-  "sync.gist": "59bd205ac26d814ad1d4a551696431c2",
-  "sync.host": "",
-  "sync.pathPrefix": "",
-  "sync.quietSync": false,
-  "sync.askGistName": false,
-  "sync.removeExtensions": true,
-  "sync.syncExtensions": true,
-  "sync.autoDownload": false,
-  "sync.autoUpload": false,
-  "sync.lastUpload": "2018-08-22T06:53:20.063Z",
-  "sync.lastDownload": "",
-  "sync.forceDownload": false,
-  "git.autofetch": true,
+  // 文本编辑器
+  "workbench.colorTheme": "GitHub Dark",
+  "editor.fontFamily": "Fira Code, Cascadia Code, Iosevka, '微软雅黑', Consolas, 'Courier New', monospace",
+  "editor.fontWeight": 450,
+  "editor.fontSize": 15,
+  "editor.fontLigatures": true,
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.startupEditor": "none",
+  "editor.minimap.autohide": true,
+  "http.proxySupport": "on",
+  "http.proxyStrictSSL": false,
+  "http.proxyAuthorization": null,
+  "git.ignoreLegacyWarning": true,
+  "git.ignoreMissingGitWarning": true,
   "vsicons.dontShowNewVersionMessage": true,
-  "files.autoSave": "onFocusChange",
-  "editor.minimap.enabled": false,
-  "files.eol": "\n",
-  "[markdown]": {
-    "editor.quickSuggestions": true
-  },
-  "cSpell.enabledLanguageIds": [
-    "asciidoc",
-    "c",
-    "cpp",
-    "csharp",
-    "css",
-    "go",
-    "handlebars",
-    "html",
-    "jade",
-    "javascript",
-    "javascriptreact",
-    "json",
-    "latex",
-    "less",
-    "markdown",
-    "php",
-    "plaintext",
-    "pub",
-    "restructuredtext",
-    "rust",
-    "scss",
-    "text",
-    "typescript",
-    "typescriptreact",
-    "yml"
+  "security.workspace.trust.untrustedFiles": "open",
+  "window.zoomLevel": 1,
+  "editor.accessibilitySupport": "off",
+  "julia.NumThreads": "auto",
+  // 远程
+  "terminal.integrated.defaultProfile.windows": "Command Prompt",
+  "terminal.integrated.commandsToSkipShell": [
+    "language-julia.interrupt"
   ],
-  "git.confirmSync": false,
+  "remote.SSH.connectTimeout": 10,
+  "remote.SSH.maxReconnectionAttempts": null,
+  "remote.downloadExtensionsLocally": true,
+  "remote.SSH.useLocalServer": false,
+  "remote.SSH.localServerDownload": "always",
+  "remote.SSH.remotePlatform": {
+    "27": "linux",
+    "56": "linux",
+    "124": "linux",
+    "139": "linux",
+    "248": "linux",
+    "GPU124": "linux",
+    "GPU248": "linux"
+  },
+  // 编程设置
+  // tabnine
+  "tabnine.experimentalAutoImports": true,
+  // julia
+  "julia.executablePath": "D:/Program Files/Julia-1.9.0/bin/julia.exe",
+  "julia.environmentPath": "C:/Users/cyb/.julia/environments/v1.9",
+  "julia.symbolCacheDownload": true,
+  "julia.enableTelemetry": false,
+  "julia.execution.saveOnEval": true,
+  "julia.lint.call": false,
+  // python
+  "python.formatting.provider": "none",
+  "python.venvFolders": [
+    "C:\\Users\\cyb\\Envs"
+  ],
+  "python.linting.flake8Enabled": true,
+  //jupyter
+  "jupyter.interactiveWindow.textEditor.executeSelection": true,
+  "jupyter.allowUnauthorizedRemoteConnection": true,
+  "notebook.consolidatedOutputButton": false,
+  "notebook.lineNumbers": "on",
+  "notebook.editorOptionsCustomizations": null,
+  "notebook.displayOrder": [
+    "image/png",
+    "text/plain"
+  ],
+  "notebook.diff.enablePreview": false,
+  "notebook.formatOnSave.enabled": true,
+  //检查和格式化
+  "cSpell.enableFiletypes": [
+    "!python"
+  ],
+  "[python]": {
+    "editor.formatOnType": true,
+    "editor.defaultFormatter": "ms-python.python"
+  },
+  "[jsonc]": {
+    "editor.defaultFormatter": "vscode.json-language-features"
+  },
+  //markdown
+  "markdown-preview-enhanced.previewTheme": "vue.css",
+  "markdown-preview-enhanced.revealjsTheme": "serif.css",
+  "[markdown]": {
+    "editor.defaultFormatter": "yzhang.markdown-all-in-one"
+  },
+  "markdown-preview-enhanced.enableScriptExecution": true,
+  "markdown.marp.enableHtml": true,
+  "markdown.marp.exportType": "html",
+  "markdown.marp.themes": [
+    "https://raw.githubusercontent.com/dracula/marp/master/dracula/dracula.css",
+    "https://cunhapaulo.github.io/style/freud.css",
+    "https://cunhapaulo.github.io/style/hegel.css",
+    "https://cunhapaulo.github.io/style/heidegger.css",
+    "https://cunhapaulo.github.io/style/jobs.css",
+    "https://cunhapaulo.github.io/style/kant.css",
+    "https://cunhapaulo.github.io/style/plato.css",
+    "https://cunhapaulo.github.io/style/leibniz.css",
+    "https://raw.githubusercontent.com/eyssette/teaching-theme-for-marp/master/themes/teaching.css",
+    "https://cunhapaulo.github.io/style/socrates.css"
+  ],
+  // prettify symbols
+  "prettifySymbolsMode.substitutions": [
+    {
+      "language": "python",
+      "substitutions": [
+        {
+          "ugly": "lambda",
+          "pretty": "λ"
+        },
+      ]
+    }
+  ],
 }
